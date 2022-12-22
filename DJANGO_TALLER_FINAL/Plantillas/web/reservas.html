@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <title>Reservas</title>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-light bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand">Gastronomica</a>
+        <ul class="navbar-nav">
+            <li class="navbar-item">
+                <a class="nav-link" href="/">Inicio</a>
+            </li>
+            <li class="navbar-item active">
+                <a class="nav-link" href="/reservas/">Reservas</a>
+            </li>
+            <li class="navbar-item">
+                <a class="nav-link" href="/reservasrest/" target="_blank">REST API</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="alert alert-success display-5 mt-5 text-center">LISTADO DE RESERVAS</div>
+    {% if reservas %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Fono</th>
+                    <th>Fecha Insc.</th>
+                    <th>Institución</th>
+                    <th>Hora Insc.</th>
+                    <th>Estado</th>
+                    <th>Observación</th>
+                    <th class="text-center">Actualizar</th>
+                    <th class="text-center">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in reservas %}
+                <tr>
+                    <td scope ="row">{{ res.id}}</td>
+                    <td>{{ res.nombre}}</td>
+                    <td>{{ res.fono}}</td>
+                    <td>{{ res.fecha_inscripcion}}</td>
+                    <td>{{ res.institucion}}</td>
+                    <td>{{ res.hora_inscripcion}}</td>
+                    <td>{{ res.estado}}</td>
+                    <td>{{ res.observacion}}</td>
+                    <td class="text-center"><a href="/actualizar/{{res.id}}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a></td>
+                    <td class="text-center"><a href="/eliminar/{{res.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>            
+        </table>    
+        {% else %}
+            <div class="alert alert-info">No hay personas que mostrar</div>
+        {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <a href="../agregarreserva" class="btn btn-info text-center">AGREGAR RESERVA</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
